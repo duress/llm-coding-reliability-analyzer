@@ -1,244 +1,213 @@
 # LACA Reliability Analysis Toolkit
 
-A comprehensive toolkit for LLM Annotation Consistency Assessment (LACA) featuring two complementary tools designed for different stages of prompt optimization and statistical analysis.
+A user-friendly toolkit for LLM Annotation Consistency Assessment (LACA), featuring two tools designed for prompt optimization and statistical analysis. Perfect for researchers and non-programmers working with small datasets.
 
 ## Overview
 
-This research toolkit provides two specialized tools for evaluating LLM coding reliability and consistency. The toolkit supports the complete workflow from prompt iterative optimization to formal statistical comparison analysis.
+This toolkit helps evaluate how consistent Large Language Models (LLMs) are when coding data compared to human coders. It includes two tools:
+1. **Coding Quality Check Tool**: For quick testing and improving LLM prompts.
+2. **Statistical Comparison Analysis Tool**: For detailed statistical analysis of LLM performance across different conditions.
+
+The toolkit supports the full workflow, from testing prompts to producing research-ready statistical reports.
 
 ## Toolkit Components
 
-### 1. Coding Quality Check Tool (編碼品質檢查工具)
-A lightweight Python program specifically designed for LLM prompt iterative optimization. This tool processes tab-separated text files containing six coding values per row (five LLM codings plus one human standard coding) and automatically calculates Cohen's Kappa values for both LLM-standard coding reliability and LLM internal consistency.
+### 1. Coding Quality Check Tool
+A simple Python program for testing and improving LLM prompts. It processes tab-separated text files with six columns (five LLM codings + one human coding) and calculates agreement metrics like Cohen's Kappa.
 
 **Key Features:**
-- **Lightweight Design**: Optimized for quick iterative prompt testing
-- **Real-time Quality Assessment**: Immediate feedback for prompt optimization
-- **Detailed Inconsistency Reports**: Complete sample details with coder IDs and results
-- **Dual Output Format**: TXT reliability reports and CSV result files
-- **Problem Sample Identification**: Easy identification of problematic cases for prompt refinement
+- **Easy to Use**: Designed for quick prompt testing, no coding expertise needed.
+- **Instant Feedback**: Shows how well LLMs agree with humans and each other.
+- **Detailed Reports**: Lists cases where coders disagree, with sample IDs and comments.
+- **Dual Outputs**: Saves results as a text report (`.txt`) and a spreadsheet (`.csv`).
+- **Problem Spotting**: Highlights cases needing prompt improvement.
 
-### 2. Statistical Comparison Analysis Tool (統計比較分析工具)
-A comprehensive statistical analysis program designed to examine LLM coding differences under various conditions. This tool integrates a complete statistical analysis pipeline for rigorous research applications.
+### 2. Statistical Comparison Analysis Tool
+A powerful tool for researchers to compare LLM coding performance across two datasets (e.g., different prompts or conditions). It provides detailed statistical analysis for formal studies.
 
 **Key Features:**
-- **Advanced Statistical Methods**: Cohen's Kappa, Bootstrap resampling, Fisher's z transformation, independent t-tests, Z-tests
-- **Multiple Comparison Correction**: Benjamini-Hochberg FDR correction for robust statistical inference
-- **Dual Dataset Comparison**: Automated comparison between two coding datasets
-- **Comprehensive Reporting**: Detailed statistical reports with descriptive statistics, category distributions, and corrected p-values
-- **Non-parametric Validation**: Additional verification through non-parametric tests
-- **Configurable Bootstrap**: Adjustable iterations for statistical robustness
+- **Advanced Stats**: Measures agreement (Cohen's Kappa), compares datasets, and checks reliability.
+- **Error Correction**: Adjusts results to avoid false positives (Benjamini-Hochberg method).
+- **Compare Two Datasets**: Analyzes differences between two sets of coding results.
+- **Detailed Reports**: Includes agreement stats, category distributions, and significance tests.
+- **Extra Validation**: Uses non-parametric tests to confirm results.
+- **Customizable**: Adjust the number of iterations for more robust analysis.
+
+## Input Data Format
+
+Your data file should be tab-separated (`.txt` or `.tsv`) with exactly 6 or 7 columns:
+- **Columns 1-5**: LLM coding results (e.g., 'a' or 'b')
+- **Column 6**: Human expert coding (e.g., 'a' or 'b')
+- **Column 7** (optional): Comments or sample descriptions
+
+**Example data file (`sample_data.txt`):**
+```
+a	a	b	a	a	a	Sample comment here
+b	b	b	a	b	b	Another sample
+a	a	a	a	a	a	Perfect agreement case
+b	a	b	b	b	b	Challenging case
+a	b	a	a	a	a	Mixed agreement
+```
+
+**Important Notes:**
+- Use tabs (not spaces) to separate columns
+- Only 'a' and 'b' categories are currently supported
+- Save as plain text file with `.txt` extension
+- No headers needed - data starts from row 1
 
 ## Output Files
 
 ### Coding Quality Check Tool
-- **Detailed TXT Reliability Report**: Complete inconsistency sample details showing sample IDs, coder results, and final coding
-- **CSV Result File**: Final coding results with original coding data for further analysis
+- **Text Report (`*_reliability_results.txt`)**: Detailed report with disagreement cases, including sample IDs, coder results, and comments.
+- **CSV File (`*_results.csv`)**: Final coding results with original data for further analysis.
 
 ### Statistical Comparison Analysis Tool
-- **Comprehensive TXT Statistical Report**: 
-  - Kappa descriptive statistics
-  - Category distribution analysis
-  - Statistical comparison results
-  - Corrected p-values
-  - Non-parametric test verification
-- **Structured CSV Data File**: Kappa values and standard errors for each combination
+- **Text Report (`Reliability_Analysis_*_vs_*_*.txt`)**: Comprehensive stats, including:
+  - Agreement scores (Kappa)
+  - Category distributions
+  - Statistical comparisons
+  - Adjusted p-values
+  - Non-parametric test results
+- **CSV File (`Reliability_Analysis_*_vs_*_*.csv`)**: Agreement scores and errors for each coder pair.
+
+**Note**: Running the tools multiple times may overwrite output files. To avoid this, rename files after each run or move them to a different folder.
 
 ## Requirements
 
 - **Python Version**: 3.7 or higher
-- **Required Packages**: 
-  - numpy
-  - scipy  
-  - pandas
-  - scikit-learn
-  - pathlib
-  - itertools
-  - logging
+- **Required Packages**:
+  - `numpy`
+  - `scipy`
+  - `pandas`
+  - `scikit-learn`
+  - `pathlib` (included with Python)
+  - `itertools` (included with Python)
+  - `logging` (included with Python)
 
 ## Installation
 
-1. Clone this repository:
-```bash
-git clone https://github.com/duress/kappa-reliability-analyzer.git
-cd kappa-reliability-analyzer
-```
+For non-programmers, follow these steps to set up the toolkit:
 
-2. Install required packages:
+### 1. Install Python
+- Download Python 3.7 or higher from [python.org](https://www.python.org/downloads/)
+- Run the installer and **check "Add Python to PATH"** during installation
+- Open a terminal (Command Prompt on Windows, Terminal on Mac/Linux) and type:
+  ```
+  python --version
+  ```
+  If it shows Python 3.7 or higher, you're ready.
+
+### 2. Download the Toolkit
+- Download the ZIP file from GitHub: [llm-coding-reliability-analyzer](https://github.com/duress/llm-coding-reliability-analyzer)
+- Extract the ZIP file to a folder on your computer
+- Or, if you have Git installed:
+  ```
+  git clone https://github.com/duress/llm-coding-reliability-analyzer.git
+  cd llm-coding-reliability-analyzer
+  ```
+
+### 3. Install Required Packages
+In the terminal, navigate to the toolkit folder and run:
 ```bash
 pip install numpy scipy pandas scikit-learn
 ```
 
-## Usage
-
-### Coding Quality Check Tool (For Prompt Optimization)
-
-```python
-from coding_quality_checker_EN import analyze_coding_agreement
-
-# Quick quality assessment for prompt iteration
-df, reliability = analyze_coding_agreement(
-    file_path='prompt_test_data.txt',
-    delimiter='\t',
-    encoding='utf-8',
-    ai_columns=None,  # Auto-select first 5 columns (LLM codings)
-    human_column=None,  # Auto-select last column (human standard)
-    valid_categories=['a', 'b']
-)
+If you see errors, try updating pip first:
+```bash
+pip install --upgrade pip
+pip install numpy scipy pandas scikit-learn
 ```
 
-### Statistical Comparison Analysis Tool (For Formal Analysis)
+## Quick Start Guide
 
-```python
-from statistical_comparison_analyzer_EN import KappaReliabilityAnalyzer
+### For the Coding Quality Check Tool
 
-# Comprehensive statistical comparison
-analyzer = KappaReliabilityAnalyzer(
-    n_raters=6,  # 5 LLM raters + 1 human rater
-    bootstrap_iterations=1000
-)
+1. **Prepare your data** as a tab-separated text file (see Input Data Format above)
+2. **Place the file** in the same folder as the Python scripts
+3. **Open terminal** in the toolkit folder
+4. **Run the tool**:
+   ```bash
+   python coding_quality_check.py
+   ```
+5. **Enter file path** when prompted (e.g., `sample_data.txt`)
+6. **Check results** in the generated `.txt` and `.csv` files
 
-# Compare two different prompting conditions
-analyzer.run_analysis('condition1_data.csv', 'condition2_data.csv')
-```
+### For the Statistical Comparison Analysis Tool
 
-## Input Data Format
+1. **Prepare two data files** (e.g., different prompts or conditions)
+2. **Place both files** in the toolkit folder
+3. **Run the tool**:
+   ```bash
+   python statistical_comparison_analysis.py
+   ```
+4. **Follow prompts** to select your two files
+5. **Choose bootstrap iterations** (default: 1000, more = more accurate but slower)
+6. **Review results** in the generated statistical report
 
-### Tab-separated Text Files (Coding Quality Check Tool)
-```
-AI1	AI2	AI3	AI4	AI5	Human
-a	a	b	a	a	a
-b	b	b	b	b	b
-a	a	a	a	a	a
-```
+## Example Use Cases
 
-### CSV Files (Statistical Comparison Analysis Tool)
-```csv
-AI1,AI2,AI3,AI4,AI5,Human
-a,a,b,a,a,a
-b,b,b,b,b,b
-a,a,a,a,a,a
-```
+### 1. Prompt Development
+Test different prompts to see which gives better agreement with human coders:
+- Create datasets with the same samples but different LLM prompts
+- Use the Coding Quality Check Tool to quickly assess each prompt
+- Use the Statistical Comparison Tool to formally compare the best candidates
 
-## Statistical Methods
+### 2. Reliability Assessment
+Measure how consistent your LLM is before using it for large-scale coding:
+- Run your LLM 5 times on the same dataset
+- Use the Coding Quality Check Tool to assess reliability
+- Aim for Cohen's Kappa > 0.7 for good reliability
 
-### Reliability Assessment
-- **Cohen's Kappa**: Inter-rater and intra-rater reliability measurement
-- **Bootstrap Resampling**: Standard error estimation for robust inference
-- **Fisher's z Transformation**: For statistical comparisons between conditions
+### 3. Method Comparison
+Compare two different LLMs or prompt strategies statistically:
+- Generate coding results from both methods
+- Use the Statistical Comparison Tool for formal statistical testing
+- Report results with confidence intervals and significance tests
 
-### Hypothesis Testing
-- **Independent Sample t-test**: Compare Kappa coefficients between conditions
-- **Z-test**: AI-Human disagreement rate comparison
-- **Mann-Whitney U Test**: Non-parametric validation
+## Troubleshooting
 
-### Multiple Comparison Correction
-- **Benjamini-Hochberg FDR**: Controls false discovery rate across multiple tests
+### Common Issues
 
-## Advanced Features
+**"File not found" error:**
+- Check that your file is in the same folder as the Python scripts
+- Use the full file path (e.g., `C:\Users\YourName\Documents\data.txt`)
+- Make sure the file extension is correct (`.txt`)
 
-### Automatic Detection and Processing
-- **Character Encoding Detection**: Supports UTF-8, GBK, and other encodings
-- **Multi-language Support**: International dataset compatibility
-- **Flexible Column Selection**: Customizable AI and human coder assignments
+**"Invalid data format" error:**
+- Ensure you're using tabs (not spaces) to separate columns
+- Check that all coding values are 'a' or 'b'
+- Remove any extra spaces or special characters
 
-### Quality Assurance
-- **Data Validation**: Built-in checks for data integrity
-- **Error Handling**: Robust error reporting and recovery
-- **Inconsistency Analysis**: Detailed breakdown of disagreement patterns
+**Import errors:**
+- Make sure you've installed all required packages: `pip install numpy scipy pandas scikit-learn`
+- Try updating Python to the latest version
 
-## Recommended Workflow
+**No output files generated:**
+- Check file permissions in the folder
+- Make sure the script ran without errors
+- Look for error messages in the terminal
 
-### Phase 1: Prompt Development (Use Coding Quality Check Tool)
-1. **Initial Testing**: Test prompts with small datasets
-2. **Quality Assessment**: Run quick reliability checks
-3. **Problem Identification**: Review inconsistency cases
-4. **Prompt Refinement**: Iterate based on quality feedback
-5. **Validation**: Confirm improved consistency
+### Getting Help
 
-### Phase 2: Formal Analysis (Use Statistical Comparison Analysis Tool)
-1. **Data Preparation**: Prepare final datasets for comparison
-2. **Statistical Analysis**: Run comprehensive Bootstrap analysis
-3. **Multiple Comparison**: Review corrected statistical results
-4. **Validation**: Check non-parametric confirmations
-5. **Reporting**: Generate final research reports
-
-### Integrated Approach
-The toolkit is designed for seamless integration: start with the Coding Quality Check Tool for rapid prompt optimization, then proceed to the Statistical Comparison Analysis Tool for rigorous statistical validation.
-
-## Output Interpretation
-
-### Kappa Values
-- **> 0.8**: Excellent agreement
-- **0.6-0.8**: Good agreement  
-- **0.4-0.6**: Moderate agreement
-- **< 0.4**: Poor agreement
-
-### Statistical Significance (After FDR Correction)
-- **p < 0.001**: *** (highly significant)
-- **p < 0.01**: ** (very significant)
-- **p < 0.05**: * (significant)
-- **p ≥ 0.05**: ns (not significant)
-
-## Example Output
-
-### Coding Quality Check Tool Output
-```
-=== Analysis Summary ===
-Number of AI coders: 5
-Total cases: 150
-
-=== Kappa Statistics ===
-Average inter-rater Kappa (AI vs. Human): 0.7234
-Average intra-rater Kappa (AI vs. AI): 0.8123
-
-=== Disagreement Analysis ===
-AI-Human Disagreement Rate: 0.2133 (32/150 cases)
-AI Internal Disagreement: 18/150 cases where AIs disagree among themselves
-```
-
-### Statistical Comparison Analysis Tool Output
-```
-=== Statistical Comparison Results ===
-Methods: Fisher's z transformation + Independent t-test
-
-Inter-rater Comparison: t=2.456, p=0.014532, Cohen's d=0.423
-Multiple Comparison Corrected p-values (Benjamini-Hochberg):
-Inter-rater Comparison (Corrected): p=0.021798 *
-```
-
-## Applications
-
-- **LLM Prompt Engineering**: Optimize prompts for consistent annotation
-- **Content Analysis Research**: Evaluate LLM reliability for systematic coding
-- **Machine Learning Validation**: Assess model consistency across conditions
-- **Quality Control**: Monitor annotation quality in production systems
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+If you encounter issues:
+1. Check the error message in the terminal
+2. Verify your data format matches the examples
+3. Try running with a smaller test dataset
+4. Open an issue on the GitHub repository with your error message
 
 ## Citation
 
 If you use this toolkit in your research, please cite:
 
-```bibtex
-@software{laca_reliability_toolkit,
-  title={LACA Reliability Analysis Toolkit: Tools for LLM Annotation Consistency Assessment},
-  author={Ko, Lu-Yen},
-  year={2025},
-  url={https://github.com/duress/kappa-reliability-analyzer}
-}
+```
+[Your Name]. (2025). LACA Reliability Analysis Toolkit. 
+GitHub repository: https://github.com/duress/llm-coding-reliability-analyzer
 ```
 
-## Support
+## License
 
-For questions, bug reports, or feature requests, please open an issue on GitHub.
+This project is open source and available under the MIT License.
 
----
+## Contributing
 
-**Note**: This toolkit is designed for research applications in LLM annotation consistency assessment. The two-stage approach (quality check → statistical analysis) provides both rapid feedback for prompt development and rigorous validation for research publication.
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests on GitHub.
