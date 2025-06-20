@@ -74,7 +74,7 @@ pip install numpy scipy pandas scikit-learn
 ### Coding Quality Check Tool (For Prompt Optimization)
 
 ```python
-from basic_reliability_analyzer import analyze_coding_agreement
+from coding_quality_checker_EN import analyze_coding_agreement
 
 # Quick quality assessment for prompt iteration
 df, reliability = analyze_coding_agreement(
@@ -90,7 +90,7 @@ df, reliability = analyze_coding_agreement(
 ### Statistical Comparison Analysis Tool (For Formal Analysis)
 
 ```python
-from statistical_comparison_analyzer import KappaReliabilityAnalyzer
+from statistical_comparison_analyzer_EN import KappaReliabilityAnalyzer
 
 # Comprehensive statistical comparison
 analyzer = KappaReliabilityAnalyzer(
