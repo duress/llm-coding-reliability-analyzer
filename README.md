@@ -2,7 +2,7 @@
 
 This repository provides the companion code for:
 
-> Ko, L.-Y. (2026). Bridging Statistics and Interpretation: An LLM-assisted Content Analysis Approach to Corpus-assisted Discourse Analysis. *Mass Communication Research*, 167, 123–180. https://doi.org/10.30386/MCR.202604.0003
+> Ko, L.-Y. (2026). Bridging Statistics and Interpretation: An LLM-assisted Content Analysis Approach to Corpus-assisted Discourse Analysis. *Mass Communication Research*, 167, 123–180. https://doi.org/10.30386/MCR.202604.0008
 
 A user-friendly toolkit for **LLM Annotation Consistency Assessment (LACA)**, featuring two tools designed for prompt optimization and statistical analysis. Suitable for researchers and non-programmers working with small datasets.
 
